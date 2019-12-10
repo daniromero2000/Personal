@@ -1,21 +1,31 @@
 <template >
   <div>
-   <post-list-default :posts="posts"></post-list-default>
+    <post-list-default
+      :key="currentPage"
+      @getCurrentPage="getCurrentPage"
+      v-if="total > 0"
+      :posts="posts"
+      :pCurrentPage="currentPage"
+      :total="total"
+    ></post-list-default>
   </div>
 </template>
 <script>
 export default {
   created() {
-    this.getPost();
+    this.getPosts();
   },
   methods: {
     postClick: function(p) {
       this.postSelected = p;
     },
-    getPost() {
-      fetch("/api/post")
+    getPosts() {
+      fetch("/api/post?page=" + this.currentPage)
         .then(response => response.json())
-        .then(json => this.posts = json.data.data);
+        .then(json => {
+          this.posts = json.data.data;
+          this.total = json.data.last_page;
+        });
 
       // .then(function(response) {
       //   return response.json();
@@ -23,12 +33,20 @@ export default {
       // .then(function(json) {
       //   console.log(json.data.data);
       // });
+    },
+    getCurrentPage: function(val) {
+      this.currentPage = val;
+      this.getPosts();
+      //   console.log("PostList + currentPage:" + val);
     }
   },
+
   data: function() {
     return {
       postSelected: "",
-      posts: []
+      posts: [],
+      total: 0,
+      currentPage: 1
     };
   }
 };
