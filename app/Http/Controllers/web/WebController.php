@@ -21,4 +21,9 @@ class WebController extends Controller
     {
         return view('web.index');
     }
+
+    public function contact()
+    {
+        return view('web.index');
+    }
 }
