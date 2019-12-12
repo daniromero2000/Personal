@@ -13,8 +13,7 @@
         {{ post.content }}
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
@@ -24,7 +23,7 @@
 export default {
      props:["post"],
     created(){
-        console.log("modal created");
+        // console.log("modal created");
         // setTimeout(function(){
         //     $("#exampleModal").modal("show");
         // },1000);

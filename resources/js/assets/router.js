@@ -6,6 +6,7 @@ import VueRouter from 'vue-router';
 import PostList from '../components/PostListComponent.vue'
 import PostDetail from '../components/PostDetailComponent.vue'
 import PostCategory from '../components/PostCategoryComponent.vue'
+import CategoryListDefault from '../components/CategoryListDefaultComponent.vue'
 
 import Contact from '../components/ContactComponent.vue'
 
@@ -20,7 +21,9 @@ export default new VueRouter({
         { path: '/', component: PostList, name: "list" },
         { path: '/detail/:id', component: PostDetail, name: "detail" },
         { path: '/post-category/:category_id', component: PostCategory, name: "post-category" },
-        { path: '/Contact', component: Contact, name: "Contact" },
+        { path: '/contact', component: Contact, name: "contact" },
+        { path: '/categories', component: CategoryListDefault, name: "list-category" },
+
 
     ]
 });

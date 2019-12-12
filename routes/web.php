@@ -40,6 +40,7 @@ Route::resource('dashboard/category', 'dashboard\CategoryController');
 Route::resource('dashboard/user', 'dashboard\UserController');
 
 Route::get('/', 'web\WebController@index')->name('index');
+Route::get('/categories', 'web\WebController@index')->name('index');
 Route::get('/contact', 'web\WebController@contact')->name('contact');
 
 

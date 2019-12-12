@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{ route('home') }}">Larablog</a>
+    <router-link class="navbar-brand" to="/">Larablog</router-link>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -8,7 +8,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-               Home
+                <router-link class="text-dark nav-link" to="/"> Home</router-link>
+            </li>
+            <li class="nav-item dropdown">
+                <router-link class="text-dark nav-link" to="/categories"> Categorias</router-link>
             </li>
         </ul>
 

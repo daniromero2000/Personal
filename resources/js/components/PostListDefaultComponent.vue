@@ -1,6 +1,6 @@
 <template >
   <div>
-    <div class="card w-50 mb-2 ml-auto mr-auto" v-for="post in posts">
+    <div class="card w-50 mb-2 ml-auto mr-auto" v-for="post in posts" :key="post.id">
       <div class="card-body">
         <h5 class="card-title">{{ post.title }}</h5>
         <img class="card-img-bottom" v-bind:src=" '/images/' + post.image " alt />
