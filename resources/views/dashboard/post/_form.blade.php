@@ -19,7 +19,7 @@
     <label for="category_id">Categorías</label>
     <select class="form-control" name="category_id" id="category_id">
         @foreach ($categories as $title => $id)
-        <option {{ $post->category_id == $id ? 'selected="selected"' : '' }}  value="{{ $id }}">{{ $title }}</option>
+        <option {{ $post->category_id == $id ? 'selected="selected"' : '' }} value="{{ $id }}">{{ $title }}</option>
         @endforeach
     </select>
 </div>
@@ -27,13 +27,15 @@
 <div class="form-group">
     <label for="posted">Posted</label>
     <select class="form-control" name="posted" id="posted">
-      @include('dashboard.partials.option-yes-not',['val' => $post->posted])
+        @include('dashboard.partials.option-yes-not',['val' => $post->posted])
     </select>
 </div>
 
 <div class="form-group">
-    <label for="content">Contenido</label>
-    <textarea class="form-control" id="content" name="content" rows="3">{{ old('content',$post->content) }}</textarea>
+    <label for="editor">Contenido</label>
+    <textarea class="form-control" id="editor" name="content" rows="3">{{ old('content',$post->content) }}</textarea>
 </div>
+
+<input type="hidden" id="token" value="{{ csrf_token() }}">
 
 <input type="submit" value="Enviar" class="btn btn-primary">

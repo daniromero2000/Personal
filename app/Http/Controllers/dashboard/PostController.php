@@ -10,6 +10,7 @@ use App\Http\Requests\UpdatePostPut;
 use App\Post;
 use App\PostImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -129,6 +130,19 @@ class PostController extends Controller
 
         PostImage::create(['image' => $filename, 'post_id' => $post->id]);
         return back()->with('status', 'Imagen cargada con exito');
+    }
+    public function contentImage(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|mimes:jpeg,bmp,png|max:10240', //10Mb
+        ]);
+
+        $filename = time() . "." . $request->image->extension();
+
+        $request->image->move(public_path('images'), $filename);
+
+        return response()->json(["default" => URL::to('/').'/images/'. $filename]);
+
     }
 
     /**
