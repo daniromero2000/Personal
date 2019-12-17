@@ -34,6 +34,8 @@ return view("home",['nombre' => $nombre,'apellido' => "Mujica",'posts' => $posts
 })->name("home");*/
 
 Route::resource('dashboard/post', 'dashboard\PostController');
+Route::resource('dashboard/contact', 'dashboard\ContactController')->only(['index', 'show', 'destroy']);
+
 Route::post('dashboard/post/{post}/image', 'dashboard\PostController@image')->name('post.image');
 Route::post('dashboard/post/content_image', 'dashboard\PostController@contentImage');
 
