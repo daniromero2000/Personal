@@ -35,6 +35,8 @@ return view("home",['nombre' => $nombre,'apellido' => "Mujica",'posts' => $posts
 
 Route::resource('dashboard/post', 'dashboard\PostController');
 Route::resource('dashboard/contact', 'dashboard\ContactController')->only(['index', 'show', 'destroy']);
+Route::resource('dashboard/postComment', 'dashboard\PostCommentController')->only(['index', 'show', 'destroy']);
+Route::get('dashboard/postComment/{post}/post', 'dashboard\PostCommentController@post')->name('postComment.post');
 
 Route::post('dashboard/post/{post}/image', 'dashboard\PostController@image')->name('post.image');
 Route::post('dashboard/post/content_image', 'dashboard\PostController@contentImage');

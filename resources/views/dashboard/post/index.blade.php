@@ -56,6 +56,7 @@
             <td>
                 <a href="{{ route('post.show',$post->id) }}" class="btn btn-primary">Ver</a>
                 <a href="{{ route('post.edit',$post->id) }}" class="btn btn-primary">Actualizar</a>
+                <a href="{{ route('postComment.post',$post->id) }}" class="btn btn-primary">Comentarios</a>
 
                 <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $post->id }}"
                     class="btn btn-danger">Eliminar</button>
@@ -99,7 +100,7 @@
 
 <script>
     $('#deleteModal').on('show.bs.modal', function (event) {
-        
+
   var button = $(event.relatedTarget) // Button that triggered the modal
   var id = button.data('id') // Extract info from data-* attributes
   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).

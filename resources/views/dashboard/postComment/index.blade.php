@@ -1,65 +1,39 @@
 @extends('dashboard.master')
 
 @section('content')
+@if (count($postComments ) > 0)
 
 <table class="table">
     <thead>
         <tr>
-            <td>
-                Id
-            </td>
-            <td>
-                Nombre
-            </td>
-            <td>
-                Apellido
-            </td>
-            <td>
-                Email
-            </td>
-            <td>
-                Creación
-            </td>
-            <td>
-                Actualización
-            </td>
-            <td>
-                Acciones
-            </td>
+            <td> Id </td>
+            <td> Titulo </td>
+            <td> Usuario </td>
+            <td> Email </td>
+            <td> Creación </td>
+            <td> Actualización </td>
+            <td> Acciones </td>
         </tr>
     </thead>
     <tbody>
-        @foreach ($contacts as $contact)
+        @foreach ($postComments as $postComment)
         <tr>
-            <td>
-                {{ $contact->id }}
-            </td>
-            <td>
-                {{ $contact->name }}
-            </td>
-            <td>
-                {{ $contact->surname }}
-            </td>
-            <td>
-                {{ $contact->email }}
-            </td>
-            <td>
-                {{ $contact->created_at->format('d-m-Y') }}
-            </td>
-            <td>
-                {{ $contact->updated_at->format('d-m-Y') }}
-            </td>
-            <td>
-                <a href="{{ route('contact.show',$contact->id) }}" class="btn btn-primary">Ver</a>
-                <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $contact->id }}"
+            <td> {{ $postComment->id }} </td>
+            <td> {{ $postComment->title }} </td>
+            <td> {{ $postComment->user->name}} </td>
+            <td> {{ $postComment->user->email}} </td>
+            <td> {{ $postComment->created_at->format('d-m-Y') }} </td>
+            <td> {{ $postComment->updated_at->format('d-m-Y') }} </td>
+            <td> <a href="{{ route('postComment.show',$postComment->id) }}" class="btn btn-primary">Ver</a> <button
+                    data-toggle="modal" data-target="#deleteModal" data-id="{{ $postComment->id }}"
                     class="btn btn-danger">Eliminar</button>
-
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
-{{ $contacts->links() }}
+
+{{ $postComments->links() }}
 
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -77,12 +51,14 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
-                <form id="formDelete" method="POST" action="{{ route('contact.destroy',0) }}"
-                    data-action="{{ route('contact.destroy',0) }}">
+                <form id="formDelete" method="POST" action="{{ route('postComment.destroy',0) }}"
+                    data-action="{{ route('postComment.destroy',0) }}">
                     @method('DELETE')
                     @csrf
                     <button type="submit" class="btn btn-danger">Borrar</button>
                 </form>
+
+
             </div>
         </div>
     </div>
@@ -107,4 +83,12 @@
 })
 </script>
 
+@else
+<div class="card mt-5">
+    <div class="card-body">
+        <p class="card-text">No hay comenterarios para este post</p>
+    </div>
+</div>
+
+@endif
 @endsection
