@@ -4,13 +4,23 @@
 
 <div class="form-group">
     <label for="my-select">Post</label>
-    <div class="col-4">
-        <select id="filterPost" class="form-control">
-            @foreach ($posts as $p)
-            <option value="{{ $p->id }}" {{ $post->id == $p->id ? 'selected' : '' }}>{{ Str::limit($p->title, 20)  }}
-            </option>
-            @endforeach
-        </select>
+    <div class="col-6">
+        <div class="form-row">
+            <div class="col-10">
+                <form action="{{ route('postComment.post', $post) }}" id="filterForm">
+                    <select id="filterPost" class="form-control">
+                        @foreach ($posts as $p)
+                        <option value="{{ $p->id }}" {{ $post->id == $p->id ? 'selected' : '' }}>
+                            {{ Str::limit($p->title, 20)  }}
+                        </option>
+                        @endforeach
+                    </select>
+                </form>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+        </div>
     </div>
 </div>
 @if (count($postComments ) > 0)
@@ -103,4 +113,18 @@
 </div>
 
 @endif
+<script>
+    window.onload = function(){
+        $("#filterForm").change(function(){
+            console.log($(this).val())
+
+            var action= $('#filterForm').attr('action');
+            action = action.replace(/[0-9]/g,$("#filterPost").val());
+            console.log(action);
+
+            $(this).attr('action',action);
+        });
+    }
+
+</script>
 @endsection
