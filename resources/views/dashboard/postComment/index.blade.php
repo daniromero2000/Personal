@@ -9,7 +9,7 @@
             <td> Id </td>
             <td> Titulo </td>
             <td> Usuario </td>
-            <td> Email </td>
+            <td> Aprovado </td>
             <td> Creación </td>
             <td> Actualización </td>
             <td> Acciones </td>
@@ -21,7 +21,7 @@
             <td> {{ $postComment->id }} </td>
             <td> {{ $postComment->title }} </td>
             <td> {{ $postComment->user->name}} </td>
-            <td> {{ $postComment->user->email}} </td>
+            <td> {{ $postComment->approved}} </td>
             <td> {{ $postComment->created_at->format('d-m-Y') }} </td>
             <td> {{ $postComment->updated_at->format('d-m-Y') }} </td>
             <td> <a href="{{ route('postComment.show',$postComment->id) }}" class="btn btn-primary">Ver</a> <button
