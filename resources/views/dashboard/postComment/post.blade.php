@@ -7,7 +7,7 @@
     <div class="col-6">
         <div class="form-row">
             <div class="col-10">
-                <form action="{{ route('postComment.post', $post) }}" id="filterForm">
+                <form action="{{ route('postComment.post',1) }}" id="filterForm">
                     <select id="filterPost" class="form-control">
                         @foreach ($posts as $p)
                         <option value="{{ $p->id }}" {{ $post->id == $p->id ? 'selected' : '' }}>
@@ -40,6 +40,7 @@
     <tbody>
         @foreach ($postComments as $postComment)
         <tr>
+
             <td> {{ $postComment->id }} </td>
             <td> {{ $postComment->title }} </td>
             <td> {{ $postComment->user->name}} </td>
@@ -115,14 +116,12 @@
 @endif
 <script>
     window.onload = function(){
-        $("#filterForm").change(function(){
-            console.log($(this).val())
-
-            var action= $('#filterForm').attr('action');
+        $("#filterForm").submit(function(){
+            // console.log($(this).val())
+            var action = $(this).attr('action');
             action = action.replace(/[0-9]/g,$("#filterPost").val());
-            console.log(action);
-
-            $(this).attr('action',action);
+            console.log(action)
+            $(this).attr('action',action)
         });
     }
 
