@@ -38,6 +38,8 @@ Route::resource('dashboard/contact', 'dashboard\ContactController')->only(['inde
 Route::resource('dashboard/postComment', 'dashboard\PostCommentController')->only(['index', 'show', 'destroy']);
 Route::get('dashboard/postComment/{post}/post', 'dashboard\PostCommentController@post')->name('postComment.post');
 Route::get('dashboard/postComment/j-show/{postComment}', 'dashboard\PostCommentController@jshow');
+Route::post('dashboard/postComment/proccess/{postComment}', 'dashboard\PostCommentController@proccess');
+
 
 
 Route::post('dashboard/post/{post}/image', 'dashboard\PostController@image')->name('post.image');

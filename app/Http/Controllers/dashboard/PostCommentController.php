@@ -43,9 +43,20 @@ class PostCommentController extends Controller
 
     public function jshow(PostComment $postComment)
     {
-            return response()->json($postComment);
+        return response()->json($postComment);
     }
 
+    public function proccess(PostComment $postComment)
+    {
+
+        if ($postComment->approved == '0') {
+            $postComment->approved = '1';
+        } else {
+            $postComment->approved = '0';
+        }
+        $postComment->save();
+        return response()->json($postComment->approved);
+    }
     /**
      * Remove the specified resource from storage.
      *

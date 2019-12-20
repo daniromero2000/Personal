@@ -115,7 +115,48 @@
 
 <script>
     document.querySelectorAll(".approved").forEach(button => button.addEventListener("click",function(){
-    console.log(":" +button.getAttribute("data-id"))
+    // console.log(":" +button.getAttribute("data-id"))
+
+    var id = button.getAttribute("data-id");
+    var formData = new FormData();
+    formData.append("_token",'{{ csrf_token() }}');
+
+     fetch("{{ URL::to("/") }}/dashboard/postComment/proccess/"+id,{
+         method: 'POST',
+         body:formData
+     })
+        .then(response => response.json())
+        .then(aprroved => {
+            if(aprroved == 0){
+                button.classList.remove('btn-danger');
+                button.classList.add('btn-success');
+                button.innerHTML = "Aprovar";
+            }else{
+                button.classList.remove('btn-success');
+                button.classList.add('btn-danger');
+                button.innerHTML = "Rechazar";
+            }
+
+        });
+
+    // $.ajax({
+    //         method: "POST",
+    //         url: "{{ URL::to("/") }}/dashboard/postComment/proccess/"+id,
+    //         data: {'_token' : '{{ csrf_token() }}'}
+    //         })
+    //     .done(function(aprroved){
+    //         if(aprroved == 0){
+    //             $(button).removeClass('btn-danger');
+    //             $(button).addClass('btn-success');
+    //             $(button).text("Aprovar");
+    //         }else{
+    //             $(button).removeClass('btn-success');
+    //             $(button).addClass('btn-danger');
+    //             $(button).text("Rechazar");
+    //         }
+    //     });
+
+
 }))
 
 
